@@ -28,10 +28,10 @@ class TestTriangles(unittest.TestCase):
 
     def testEquilateral(self): # test equilateral triangle
         self.assertEqual(classifyTriangle(1,1,1),'Equilateral','1,1,1 is an Equilateral triangle')
-        self.assertEqual(classifyTriangle(2.5,2.5,2.5),'Equilateral','2.5,2.5,2.5 is an Equilateral triangle')
         self.assertNotEqual(classifyTriangle(2,2,3),'Equilateral','2,2,3 is not an Equilateral triangle')
         self.assertNotEqual(classifyTriangle(-1,-1,-1),'Equilateral','-1,-1,-1 is not an Equilateral triangle')
         self.assertNotEqual(classifyTriangle(0,0,0),'Equilateral','0,0,0 is not an Equilateral triangle')
+        self.assertNotEqual(classifyTriangle(2.5,2.5,2.5),'Equilateral','2.5,2.5,2.5 is not an Equilateral triangle')
         self.assertNotEqual(classifyTriangle('a','a','a'),'Equilateral','a,a,a is not an Equilateral triangle')
 
     def testIsosceles(self): # test Isosceles triangle
@@ -59,14 +59,17 @@ class TestTriangles(unittest.TestCase):
         self.assertNotEqual(classifyTriangle(-9,-10,-11),'Scalene','-9,-10,-11 is not a Scalene triangle')
 
     def testNotATriangle(self): # test invalid triangle and bad input
-        # self.assertEqual(classifyTriangle(1,3,0),'NotATriangle','1,3,0 is NotATriangle')
-        # self.assertEqual(classifyTriangle(0,0,0),'NotATriangle','0,0,0 is NotATriangle')
         self.assertEqual(classifyTriangle(1,1,10),'NotATriangle','1,1,10 is NotATriangle')        
         self.assertEqual(classifyTriangle(1,3,5),'NotATriangle','1,3,5 is NotATriangle')
-        # self.assertEqual(classifyTriangle(-2,3,-4),'NotATriangle','-2,3,-4 is NotATriangle')        
-        # self.assertEqual(classifyTriangle(-1,3,5),'NotATriangle','-1,3,5 is NotATriangle')
-        # self.assertEqual(classifyTriangle('a','b','c'),'NotATriangle','a,b,c is NotATriangle')
-        # self.assertEqual(classifyTriangle('','',''),'NotATriangle','<no input> is NotATriangle')
+        
+    def testInvalidInput(self):
+        self.assertEqual(classifyTriangle(1,3,0),'InvalidInput','1,3,0 is InvalidInput')
+        self.assertEqual(classifyTriangle(0,0,0),'InvalidInput','0,0,0 is InvalidInput')
+        self.assertEqual(classifyTriangle(-2,3,-4),'InvalidInput','-2,3,-4 is InvalidInput')        
+        self.assertEqual(classifyTriangle(-1,3,5),'InvalidInput','-1,3,5 is InvalidInput')
+        self.assertEqual(classifyTriangle('a','b','c'),'InvalidInput','a,b,c is InvalidInput')
+        self.assertEqual(classifyTriangle('','',''),'InvalidInput','<no input> is InvalidInput')
+
 
 if __name__ == '__main__':
     print('Running unit tests')
